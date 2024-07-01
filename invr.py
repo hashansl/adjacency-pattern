@@ -5,9 +5,14 @@ def lower_neighbors(adjacencies, vertex):
     return [v for v in adjacencies[vertex] if v < vertex]
 
 
-def incremental_vr(V, adjacencies, maxDimension):
+def incremental_vr(V, adjacencies, maxDimension,county_list):
     Vnew = list(V)
-    for vertex in np.arange(len(adjacencies)):
+    # print("county list len",len(county_list))
+    # print("adjacencies len",len(adjacencies))
+    # for vertex in np.arange(len(adjacencies)):
+    for vertex in county_list:
+        # print("vertex",vertex)
+        # print("adjacencies",adjacencies[vertex])
         N = sorted(lower_neighbors(adjacencies, vertex))
         add_cofaces(adjacencies, maxDimension, [vertex], N, Vnew)
     return Vnew
